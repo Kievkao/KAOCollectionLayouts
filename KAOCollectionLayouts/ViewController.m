@@ -7,10 +7,13 @@
 //
 
 #import "ViewController.h"
+
 #import "KAOCardLayout.h"
+#import "KAOFallingLayout.h"
 
 typedef enum : NSUInteger {
     KAOCardLayoutType,
+    KAOFallingLayoutType
 } KAOLayoutType;
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
@@ -68,6 +71,17 @@ typedef enum : NSUInteger {
             cardLayout.minimumLineSpacing = 20 + 20;
             
             collectionView.collectionViewLayout = cardLayout;
+            collectionView.pagingEnabled = YES;
+        }
+            break;
+            
+        case KAOFallingLayoutType:
+        {
+            UICollectionViewFlowLayout *fallingLayout = [[KAOFallingLayout alloc] init];
+            fallingLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+            fallingLayout.minimumLineSpacing = 20 + 20;
+            
+            collectionView.collectionViewLayout = fallingLayout;
             collectionView.pagingEnabled = YES;
         }
             break;
