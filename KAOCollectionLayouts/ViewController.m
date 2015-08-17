@@ -10,16 +10,20 @@
 #import "KAOCardLayout.h"
 #import "KAOPickerLayout.h"
 #import "KAOPickerCell.h"
+#import "KAOFallingLayout.h"
 
 typedef enum : NSUInteger {
     KAOCardLayoutType,
-    KAOPickerLayoutType
+    KAOPickerLayoutType,
+    KAOFallingLayoutType
 } KAOLayoutType;
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) CGPoint contentOffset;
+
+@property (nonatomic) KAOLayoutType currentLayoutType;
 
 @end
 
@@ -28,7 +32,9 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self prepareCollectionView:self.collectionView forLayoutType:KAOPickerLayoutType];
+    self.currentLayoutType = KAOFallingLayoutType;
+    
+    [self prepareCollectionView:self.collectionView forLayoutType:self.currentLayoutType];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -38,11 +44,11 @@ typedef enum : NSUInteger {
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self cellForLayoutType:KAOPickerLayoutType indexPath:indexPath];
+    return [self cellForLayoutType:self.currentLayoutType indexPath:indexPath];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return [self itemSizeForLayoutType:KAOPickerLayoutType];
+    return [self itemSizeForLayoutType:self.currentLayoutType];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -63,6 +69,7 @@ typedef enum : NSUInteger {
     
     switch (layoutType) {
         case KAOCardLayoutType:
+        case KAOFallingLayoutType:
             return CGRectInset(self.collectionView.frame, 20, 20).size;
             
         case KAOPickerLayoutType:
@@ -77,6 +84,7 @@ typedef enum : NSUInteger {
     
     switch (layoutType) {
         case KAOCardLayoutType:
+        case KAOFallingLayoutType:
             return [self.collectionView dequeueReusableCellWithReuseIdentifier:@"KAODemoCell" forIndexPath:indexPath];
             
         case KAOPickerLayoutType:
@@ -100,6 +108,19 @@ typedef enum : NSUInteger {
             collectionView.pagingEnabled = YES;
         }
             break;
+            
+        case KAOFallingLayoutType:
+        {
+            KAOFallingLayout *fallingLayout = [[KAOFallingLayout alloc] init];
+            fallingLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+            fallingLayout.minimumLineSpacing = 20 + 20;
+            fallingLayout.backwardFalling = NO;
+            
+            collectionView.collectionViewLayout = fallingLayout;
+            collectionView.pagingEnabled = YES;
+        }
+            break;
+
             
         case KAOPickerLayoutType:
         {
