@@ -10,4 +10,6 @@
 
 @interface KAOFallingLayout : UICollectionViewFlowLayout
 
+@property (nonatomic) IBInspectable BOOL backwardFalling;
+
 @end

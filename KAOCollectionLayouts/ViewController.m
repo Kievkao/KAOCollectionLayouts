@@ -28,7 +28,7 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self prepareCollectionView:self.collectionView forLayoutType:KAOCardLayoutType];
+    [self prepareCollectionView:self.collectionView forLayoutType:KAOFallingLayoutType];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -77,9 +77,10 @@ typedef enum : NSUInteger {
             
         case KAOFallingLayoutType:
         {
-            UICollectionViewFlowLayout *fallingLayout = [[KAOFallingLayout alloc] init];
+            KAOFallingLayout *fallingLayout = [[KAOFallingLayout alloc] init];
             fallingLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
             fallingLayout.minimumLineSpacing = 20 + 20;
+            fallingLayout.backwardFalling = NO;
             
             collectionView.collectionViewLayout = fallingLayout;
             collectionView.pagingEnabled = YES;
