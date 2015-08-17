@@ -14,6 +14,7 @@
 		DE5D8F641B81E78C00B2454A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE5D8F631B81E78C00B2454A /* Images.xcassets */; };
 		DE5D8F671B81E78C00B2454A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE5D8F651B81E78C00B2454A /* LaunchScreen.xib */; };
 		DE5D8F731B81E78C00B2454A /* KAOCollectionLayoutsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5D8F721B81E78C00B2454A /* KAOCollectionLayoutsTests.m */; };
+		DE5D8F821B81E7C400B2454A /* KAOCardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5D8F811B81E7C400B2454A /* KAOCardLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		DE5D8F6C1B81E78C00B2454A /* KAOCollectionLayoutsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KAOCollectionLayoutsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE5D8F711B81E78C00B2454A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE5D8F721B81E78C00B2454A /* KAOCollectionLayoutsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KAOCollectionLayoutsTests.m; sourceTree = "<group>"; };
+		DE5D8F801B81E7C400B2454A /* KAOCardLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAOCardLayout.h; sourceTree = "<group>"; };
+		DE5D8F811B81E7C400B2454A /* KAOCardLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KAOCardLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 		DE5D8F551B81E78C00B2454A /* KAOCollectionLayouts */ = {
 			isa = PBXGroup;
 			children = (
+				DE5D8F7C1B81E79C00B2454A /* Layouts */,
 				DE5D8F5A1B81E78C00B2454A /* AppDelegate.h */,
 				DE5D8F5B1B81E78C00B2454A /* AppDelegate.m */,
 				DE5D8F5D1B81E78C00B2454A /* ViewController.h */,
@@ -117,6 +121,15 @@
 				DE5D8F711B81E78C00B2454A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DE5D8F7C1B81E79C00B2454A /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				DE5D8F801B81E7C400B2454A /* KAOCardLayout.h */,
+				DE5D8F811B81E7C400B2454A /* KAOCardLayout.m */,
+			);
+			name = Layouts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE5D8F5F1B81E78C00B2454A /* ViewController.m in Sources */,
+				DE5D8F821B81E7C400B2454A /* KAOCardLayout.m in Sources */,
 				DE5D8F5C1B81E78C00B2454A /* AppDelegate.m in Sources */,
 				DE5D8F591B81E78C00B2454A /* main.m in Sources */,
 			);
