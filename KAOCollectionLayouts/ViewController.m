@@ -8,9 +8,11 @@
 
 #import "ViewController.h"
 #import "KAOCardLayout.h"
+#import "KAOPickerLayout.h"
 
 typedef enum : NSUInteger {
     KAOCardLayoutType,
+    KAOPickerLayoutType
 } KAOLayoutType;
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
@@ -25,7 +27,7 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self prepareCollectionView:self.collectionView forLayoutType:KAOCardLayoutType];
+    [self prepareCollectionView:self.collectionView forLayoutType:KAOPickerLayoutType];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -41,7 +43,7 @@ typedef enum : NSUInteger {
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGRectInset(collectionView.frame, 20, 20).size;
+    return [self itemSizeForLayoutType:KAOPickerLayoutType];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -58,6 +60,20 @@ typedef enum : NSUInteger {
     [self.collectionView setContentOffset:self.contentOffset];
 }
 
+- (CGSize)itemSizeForLayoutType:(KAOLayoutType)layoutType {
+    
+    switch (layoutType) {
+        case KAOCardLayoutType:
+            return CGRectInset(self.collectionView.frame, 20, 20).size;
+            
+        case KAOPickerLayoutType:
+            return CGSizeMake(CGRectGetWidth(self.collectionView.frame) - 40, 50);
+            
+        default:
+            return CGSizeZero;
+    }
+}
+
 - (void)prepareCollectionView:(UICollectionView *)collectionView forLayoutType:(KAOLayoutType)layoutType {
     
     switch (layoutType) {
@@ -69,6 +85,16 @@ typedef enum : NSUInteger {
             
             collectionView.collectionViewLayout = cardLayout;
             collectionView.pagingEnabled = YES;
+        }
+            break;
+            
+        case KAOPickerLayoutType:
+        {
+            UICollectionViewFlowLayout *pickerLayout = [[KAOPickerLayout alloc] init];
+            pickerLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+            pickerLayout.minimumLineSpacing = 20 + 20;
+            
+            collectionView.collectionViewLayout = pickerLayout;
         }
             break;
             
