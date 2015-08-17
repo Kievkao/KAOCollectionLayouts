@@ -15,6 +15,7 @@
 		DE5D8F671B81E78C00B2454A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE5D8F651B81E78C00B2454A /* LaunchScreen.xib */; };
 		DE5D8F731B81E78C00B2454A /* KAOCollectionLayoutsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5D8F721B81E78C00B2454A /* KAOCollectionLayoutsTests.m */; };
 		DE5D8F821B81E7C400B2454A /* KAOCardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5D8F811B81E7C400B2454A /* KAOCardLayout.m */; };
+		DE5D8F8B1B81F0B600B2454A /* KAOPickerLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5D8F8A1B81F0B600B2454A /* KAOPickerLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		DE5D8F721B81E78C00B2454A /* KAOCollectionLayoutsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KAOCollectionLayoutsTests.m; sourceTree = "<group>"; };
 		DE5D8F801B81E7C400B2454A /* KAOCardLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAOCardLayout.h; sourceTree = "<group>"; };
 		DE5D8F811B81E7C400B2454A /* KAOCardLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KAOCardLayout.m; sourceTree = "<group>"; };
+		DE5D8F891B81F0B600B2454A /* KAOPickerLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAOPickerLayout.h; sourceTree = "<group>"; };
+		DE5D8F8A1B81F0B600B2454A /* KAOPickerLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KAOPickerLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 			children = (
 				DE5D8F801B81E7C400B2454A /* KAOCardLayout.h */,
 				DE5D8F811B81E7C400B2454A /* KAOCardLayout.m */,
+				DE5D8F891B81F0B600B2454A /* KAOPickerLayout.h */,
+				DE5D8F8A1B81F0B600B2454A /* KAOPickerLayout.m */,
 			);
 			name = Layouts;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 			files = (
 				DE5D8F5F1B81E78C00B2454A /* ViewController.m in Sources */,
 				DE5D8F821B81E7C400B2454A /* KAOCardLayout.m in Sources */,
+				DE5D8F8B1B81F0B600B2454A /* KAOPickerLayout.m in Sources */,
 				DE5D8F5C1B81E78C00B2454A /* AppDelegate.m in Sources */,
 				DE5D8F591B81E78C00B2454A /* main.m in Sources */,
 			);
@@ -432,6 +438,7 @@
 				DE5D8F781B81E78C00B2454A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DE5D8F791B81E78C00B2454A /* Build configuration list for PBXNativeTarget "KAOCollectionLayoutsTests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +447,7 @@
 				DE5D8F7B1B81E78C00B2454A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
