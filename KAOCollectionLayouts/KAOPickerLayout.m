@@ -44,11 +44,17 @@
     visibleRect.origin = self.collectionView.contentOffset;
     visibleRect.size = self.collectionView.bounds.size;
     
+    CGFloat coeffAlpha = 1 / ((visibleRect.size.height - (self.sectionInset.top + self.sectionInset.bottom)) / 2);
+    CGFloat coeffAngle = 150 / ((visibleRect.size.height - (self.sectionInset.top + self.sectionInset.bottom)) / 2);
+    
     for (UICollectionViewLayoutAttributes* attributes in array)
     {
         if (CGRectIntersectsRect(attributes.frame, rect))
         {
-
+            CGFloat distanceFromCenter = ABS(CGRectGetMidY(visibleRect) - attributes.center.y);
+            
+            attributes.alpha = 1 - distanceFromCenter * coeffAlpha;
+            attributes.transform3D = CATransform3DMakeRotation(distanceFromCenter * coeffAngle * M_PI/360, 1, 0, 0);
         }
     }
     

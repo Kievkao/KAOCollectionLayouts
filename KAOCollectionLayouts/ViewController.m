@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "KAOCardLayout.h"
 #import "KAOPickerLayout.h"
+#import "KAOPickerCell.h"
 
 typedef enum : NSUInteger {
     KAOCardLayoutType,
@@ -37,9 +38,7 @@ typedef enum : NSUInteger {
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"KAODemoCell" forIndexPath:indexPath];
-    
-    return cell;
+    return [self cellForLayoutType:KAOPickerLayoutType indexPath:indexPath];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -71,6 +70,20 @@ typedef enum : NSUInteger {
             
         default:
             return CGSizeZero;
+    }
+}
+
+- (UICollectionViewCell *)cellForLayoutType:(KAOLayoutType)layoutType indexPath:(NSIndexPath *)indexPath {
+    
+    switch (layoutType) {
+        case KAOCardLayoutType:
+            return [self.collectionView dequeueReusableCellWithReuseIdentifier:@"KAODemoCell" forIndexPath:indexPath];
+            
+        case KAOPickerLayoutType:
+            return [self.collectionView dequeueReusableCellWithReuseIdentifier:@"KAOPickerCell" forIndexPath:indexPath];
+            
+        default:
+            return nil;
     }
 }
 

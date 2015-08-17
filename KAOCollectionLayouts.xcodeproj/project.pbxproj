@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041E46931B82637D003CCD3E /* KAOPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 041E46921B82637D003CCD3E /* KAOPickerCell.m */; };
 		DE5D8F591B81E78C00B2454A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5D8F581B81E78C00B2454A /* main.m */; };
 		DE5D8F5C1B81E78C00B2454A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5D8F5B1B81E78C00B2454A /* AppDelegate.m */; };
 		DE5D8F5F1B81E78C00B2454A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5D8F5E1B81E78C00B2454A /* ViewController.m */; };
@@ -29,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		041E46911B82637D003CCD3E /* KAOPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAOPickerCell.h; sourceTree = "<group>"; };
+		041E46921B82637D003CCD3E /* KAOPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KAOPickerCell.m; sourceTree = "<group>"; };
 		DE5D8F531B81E78C00B2454A /* KAOCollectionLayouts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KAOCollectionLayouts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE5D8F571B81E78C00B2454A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE5D8F581B81E78C00B2454A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -66,6 +69,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		041E468F1B82634E003CCD3E /* CardLayout */ = {
+			isa = PBXGroup;
+			children = (
+				DE5D8F801B81E7C400B2454A /* KAOCardLayout.h */,
+				DE5D8F811B81E7C400B2454A /* KAOCardLayout.m */,
+			);
+			name = CardLayout;
+			sourceTree = "<group>";
+		};
+		041E46901B826358003CCD3E /* PickerLayout */ = {
+			isa = PBXGroup;
+			children = (
+				DE5D8F891B81F0B600B2454A /* KAOPickerLayout.h */,
+				DE5D8F8A1B81F0B600B2454A /* KAOPickerLayout.m */,
+				041E46911B82637D003CCD3E /* KAOPickerCell.h */,
+				041E46921B82637D003CCD3E /* KAOPickerCell.m */,
+			);
+			name = PickerLayout;
+			sourceTree = "<group>";
+		};
 		DE5D8F4A1B81E78C00B2454A = {
 			isa = PBXGroup;
 			children = (
@@ -129,10 +152,8 @@
 		DE5D8F7C1B81E79C00B2454A /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				DE5D8F801B81E7C400B2454A /* KAOCardLayout.h */,
-				DE5D8F811B81E7C400B2454A /* KAOCardLayout.m */,
-				DE5D8F891B81F0B600B2454A /* KAOPickerLayout.h */,
-				DE5D8F8A1B81F0B600B2454A /* KAOPickerLayout.m */,
+				041E46901B826358003CCD3E /* PickerLayout */,
+				041E468F1B82634E003CCD3E /* CardLayout */,
 			);
 			name = Layouts;
 			sourceTree = "<group>";
@@ -240,6 +261,7 @@
 				DE5D8F5F1B81E78C00B2454A /* ViewController.m in Sources */,
 				DE5D8F821B81E7C400B2454A /* KAOCardLayout.m in Sources */,
 				DE5D8F8B1B81F0B600B2454A /* KAOPickerLayout.m in Sources */,
+				041E46931B82637D003CCD3E /* KAOPickerCell.m in Sources */,
 				DE5D8F5C1B81E78C00B2454A /* AppDelegate.m in Sources */,
 				DE5D8F591B81E78C00B2454A /* main.m in Sources */,
 			);
