@@ -11,11 +11,14 @@
 #import "KAOPickerLayout.h"
 #import "KAOPickerCell.h"
 #import "KAOFallingLayout.h"
+#import "KAOWaterfallLayout.h"
+#import "KAOImageCell.h"
 
 typedef enum : NSUInteger {
     KAOCardLayoutType,
     KAOPickerLayoutType,
-    KAOFallingLayoutType
+    KAOFallingLayoutType,
+    KAOWaterfallLayoutType
 } KAOLayoutType;
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
@@ -32,7 +35,7 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.currentLayoutType = KAOFallingLayoutType;
+    self.currentLayoutType = KAOWaterfallLayoutType;
     
     [self prepareCollectionView:self.collectionView forLayoutType:self.currentLayoutType];
 }
@@ -75,6 +78,9 @@ typedef enum : NSUInteger {
         case KAOPickerLayoutType:
             return CGSizeMake(CGRectGetWidth(self.collectionView.frame) - 40, 50);
             
+        case KAOWaterfallLayoutType:
+            return CGSizeMake(50, 50);
+            
         default:
             return CGSizeZero;
     }
@@ -89,6 +95,9 @@ typedef enum : NSUInteger {
             
         case KAOPickerLayoutType:
             return [self.collectionView dequeueReusableCellWithReuseIdentifier:@"KAOPickerCell" forIndexPath:indexPath];
+            
+        case KAOWaterfallLayoutType:
+            return [self.collectionView dequeueReusableCellWithReuseIdentifier:@"KAOImageCell" forIndexPath:indexPath];
             
         default:
             return nil;
@@ -128,6 +137,13 @@ typedef enum : NSUInteger {
             pickerLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
             pickerLayout.minimumLineSpacing = 20 + 20;
             
+            collectionView.collectionViewLayout = pickerLayout;
+        }
+            break;
+            
+        case KAOWaterfallLayoutType:
+        {
+            UICollectionViewLayout *pickerLayout = [[KAOWaterfallLayout alloc] init];
             collectionView.collectionViewLayout = pickerLayout;
         }
             break;

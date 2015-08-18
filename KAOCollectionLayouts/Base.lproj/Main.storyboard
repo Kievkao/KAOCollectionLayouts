@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -60,6 +60,26 @@
                                         <connections>
                                             <outlet property="pickerLabel" destination="ylz-NS-AoN" id="Ix1-Ms-iNr"/>
                                         </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="KAOImageCell" id="gBs-kT-kUL" customClass="KAOImageCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eyG-N5-0i9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="eyG-N5-0i9" firstAttribute="top" secondItem="gBs-kT-kUL" secondAttribute="top" id="0Px-th-cpA"/>
+                                            <constraint firstAttribute="bottom" secondItem="eyG-N5-0i9" secondAttribute="bottom" id="28b-Tw-PvE"/>
+                                            <constraint firstItem="eyG-N5-0i9" firstAttribute="leading" secondItem="gBs-kT-kUL" secondAttribute="leading" id="8gL-DZ-PBx"/>
+                                            <constraint firstAttribute="trailing" secondItem="eyG-N5-0i9" secondAttribute="trailing" id="TcD-EE-FmH"/>
+                                        </constraints>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>

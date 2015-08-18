@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		041E46931B82637D003CCD3E /* KAOPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 041E46921B82637D003CCD3E /* KAOPickerCell.m */; };
 		041E469E1B8270DF003CCD3E /* KAOFallingLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 041E469D1B8270DF003CCD3E /* KAOFallingLayout.m */; };
+		DE0022A01B837445001C7162 /* KAOWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DE00229F1B837445001C7162 /* KAOWaterfallLayout.m */; };
+		DE0022A31B8374B0001C7162 /* KAOImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0022A21B8374B0001C7162 /* KAOImageCell.m */; };
+		DE0022A61B837EF9001C7162 /* RectPlacement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE0022A41B837EF9001C7162 /* RectPlacement.cpp */; };
+		DE0022AE1B838386001C7162 /* KAORectReplacementBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE0022AD1B838386001C7162 /* KAORectReplacementBridge.mm */; };
 		DE5D8F591B81E78C00B2454A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5D8F581B81E78C00B2454A /* main.m */; };
 		DE5D8F5C1B81E78C00B2454A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5D8F5B1B81E78C00B2454A /* AppDelegate.m */; };
 		DE5D8F5F1B81E78C00B2454A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5D8F5E1B81E78C00B2454A /* ViewController.m */; };
@@ -35,6 +39,14 @@
 		041E46921B82637D003CCD3E /* KAOPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KAOPickerCell.m; sourceTree = "<group>"; };
 		041E469C1B8270DF003CCD3E /* KAOFallingLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAOFallingLayout.h; sourceTree = "<group>"; };
 		041E469D1B8270DF003CCD3E /* KAOFallingLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KAOFallingLayout.m; sourceTree = "<group>"; };
+		DE00229E1B837445001C7162 /* KAOWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAOWaterfallLayout.h; sourceTree = "<group>"; };
+		DE00229F1B837445001C7162 /* KAOWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KAOWaterfallLayout.m; sourceTree = "<group>"; };
+		DE0022A11B8374B0001C7162 /* KAOImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAOImageCell.h; sourceTree = "<group>"; };
+		DE0022A21B8374B0001C7162 /* KAOImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KAOImageCell.m; sourceTree = "<group>"; };
+		DE0022A41B837EF9001C7162 /* RectPlacement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RectPlacement.cpp; sourceTree = "<group>"; };
+		DE0022A51B837EF9001C7162 /* RectPlacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectPlacement.h; sourceTree = "<group>"; };
+		DE0022AC1B838386001C7162 /* KAORectReplacementBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAORectReplacementBridge.h; sourceTree = "<group>"; };
+		DE0022AD1B838386001C7162 /* KAORectReplacementBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KAORectReplacementBridge.mm; sourceTree = "<group>"; };
 		DE5D8F531B81E78C00B2454A /* KAOCollectionLayouts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KAOCollectionLayouts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE5D8F571B81E78C00B2454A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE5D8F581B81E78C00B2454A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -101,6 +113,29 @@
 			name = FallingLayout;
 			sourceTree = "<group>";
 		};
+		DE00229D1B8373EA001C7162 /* WaterfallLayout */ = {
+			isa = PBXGroup;
+			children = (
+				DE0022AF1B83838A001C7162 /* Alghorithm */,
+				DE00229E1B837445001C7162 /* KAOWaterfallLayout.h */,
+				DE00229F1B837445001C7162 /* KAOWaterfallLayout.m */,
+				DE0022A11B8374B0001C7162 /* KAOImageCell.h */,
+				DE0022A21B8374B0001C7162 /* KAOImageCell.m */,
+			);
+			name = WaterfallLayout;
+			sourceTree = "<group>";
+		};
+		DE0022AF1B83838A001C7162 /* Alghorithm */ = {
+			isa = PBXGroup;
+			children = (
+				DE0022AC1B838386001C7162 /* KAORectReplacementBridge.h */,
+				DE0022AD1B838386001C7162 /* KAORectReplacementBridge.mm */,
+				DE0022A41B837EF9001C7162 /* RectPlacement.cpp */,
+				DE0022A51B837EF9001C7162 /* RectPlacement.h */,
+			);
+			name = Alghorithm;
+			sourceTree = "<group>";
+		};
 		DE5D8F4A1B81E78C00B2454A = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +199,7 @@
 		DE5D8F7C1B81E79C00B2454A /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
+				DE00229D1B8373EA001C7162 /* WaterfallLayout */,
 				041E469B1B8270D1003CCD3E /* FallingLayout */,
 				041E46901B826358003CCD3E /* PickerLayout */,
 				041E468F1B82634E003CCD3E /* CardLayout */,
@@ -273,9 +309,13 @@
 			files = (
 				DE5D8F5F1B81E78C00B2454A /* ViewController.m in Sources */,
 				DE5D8F821B81E7C400B2454A /* KAOCardLayout.m in Sources */,
+				DE0022A01B837445001C7162 /* KAOWaterfallLayout.m in Sources */,
+				DE0022AE1B838386001C7162 /* KAORectReplacementBridge.mm in Sources */,
 				DE5D8F8B1B81F0B600B2454A /* KAOPickerLayout.m in Sources */,
+				DE0022A31B8374B0001C7162 /* KAOImageCell.m in Sources */,
 				041E46931B82637D003CCD3E /* KAOPickerCell.m in Sources */,
 				DE5D8F5C1B81E78C00B2454A /* AppDelegate.m in Sources */,
+				DE0022A61B837EF9001C7162 /* RectPlacement.cpp in Sources */,
 				DE5D8F591B81E78C00B2454A /* main.m in Sources */,
 				041E469E1B8270DF003CCD3E /* KAOFallingLayout.m in Sources */,
 			);
