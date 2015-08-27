@@ -23,7 +23,7 @@ typedef std::vector<CRectPlacement> CTextureArray;
 
 @implementation KAORectReplacementBridge
 
-+ (NSArray *)positionsForRectangles:(NSArray *)rectangles parentWidth:(CGFloat)parentWidth height:(CGFloat)parentHeight {
++ (NSArray *)positionsForRectangles:(NSArray *)rectangles parentSize:(CGSize)parentSize {
     
     NSMutableArray *positions = [NSMutableArray new];
     
@@ -39,12 +39,16 @@ typedef std::vector<CRectPlacement> CTextureArray;
         vecSubRects.push_back(TSubRect(itemSize.width, itemSize.height, i));
     }
     
-    CreateTextures(vecTextures, vecSubRects, parentWidth, parentHeight);
+    CreateTextures(vecTextures, vecSubRects, parentSize.width, parentSize.height);
     
     for (CSubRectArray::const_iterator it = vecSubRects.begin(); it != vecSubRects.end(); ++it)
     {
-        CGPoint itemPos = CGPointMake(it->x, it->y);
-        [positions addObject:[NSValue valueWithCGPoint:itemPos]];
+        KAORectPosition itemPos;
+        itemPos.n = it->n;
+        itemPos.x = it->x;
+        itemPos.y = it->y;
+        
+        [positions addObject:[NSValue valueWithBytes:&itemPos objCType:@encode(KAORectPosition)]];
     }
     
     return positions;

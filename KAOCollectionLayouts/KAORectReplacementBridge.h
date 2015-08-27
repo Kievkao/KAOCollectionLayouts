@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+typedef struct
+{
+    int n;
+    int x;
+    int y;
+} KAORectPosition;
+
 @interface KAORectReplacementBridge : NSObject
 
-+ (NSArray *)positionsForRectangles:(NSArray *)rectangles parentWidth:(CGFloat)parentWidth height:(CGFloat)parentHeight;
++ (NSArray *)positionsForRectangles:(NSArray *)rectangles parentSize:(CGSize)parentSize;
 
 @end

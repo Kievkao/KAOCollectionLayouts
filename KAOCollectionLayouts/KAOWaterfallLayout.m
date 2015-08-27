@@ -12,6 +12,7 @@
 @interface KAOWaterfallLayout()
 
 @property (nonatomic, strong) NSMutableArray *itemsSizes;
+@property (nonatomic, strong) NSArray *itemsPositions;
 
 @end
 
@@ -20,7 +21,13 @@
 - (void)prepareLayout {
     
     [self collectItemsSizes];
+    self.itemsPositions = [KAORectReplacementBridge positionsForRectangles:self.itemsSizes parentSize:self.collectionView.frame.size];
     
+//    for (NSValue *posValue in positions) {
+//        KAORectPosition itemPos;
+//        [posValue getValue:&itemPos];
+//        NSLog(@"value");
+//    }
 }
 
 - (void)collectItemsSizes {
@@ -47,15 +54,52 @@
 }
 
 - (CGSize)collectionViewContentSize {
-    return CGSizeZero;
-}
-
-- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
-    return nil;
+#warning JUST FOR TEST
+    return CGSizeMake(self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    
+    UICollectionViewLayoutAttributes *attributes = [super layoutAttributesForItemAtIndexPath:indexPath];
+    
+    KAORectPosition itemPos;
+    NSValue *posValue = self.itemsPositions[indexPath.row];
+    [posValue getValue:&itemPos];
+    
+    CGRect attrFrame = attributes.frame;
+    attrFrame.origin.x = itemPos.x;
+    attrFrame.origin.y = itemPos.y;
+    attributes.frame = attrFrame;
+    
+    return attributes;
+}
+
+- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
+    
+    NSMutableArray *allAttributes = [NSMutableArray arrayWithCapacity:self.itemsPositions.count];
+    
+    for (NSValue *posValue in self.itemsPositions) {
+        KAORectPosition itemPos;
+        [posValue getValue:&itemPos];
+        
+        CGSize itemSize = [self sizeForItemAtIndex:itemPos.n];
+        if (CGRectIntersectsRect(rect, CGRectMake(itemPos.x, itemPos.y, itemSize.width, itemSize.height))) {
+            
+            UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForItem:itemPos.n inSection:0]];
+            CGRect attrFrame = attributes.frame;
+            attrFrame.origin.x = itemPos.x;
+            attrFrame.origin.y = itemPos.y;
+            attrFrame.size = [self sizeForItemAtIndex:itemPos.n];
+            attributes.frame = attrFrame;
+            [allAttributes addObject:attributes];
+        }
+    }
+    return allAttributes;
+}
+
+- (CGSize)sizeForItemAtIndex:(NSUInteger)index {
+    NSValue *sizeValue = self.itemsSizes[index];
+    return [sizeValue CGSizeValue];
 }
 
 @end

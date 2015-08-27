@@ -21,7 +21,7 @@ typedef enum : NSUInteger {
     KAOWaterfallLayoutType
 } KAOLayoutType;
 
-@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  >
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) CGPoint contentOffset;
@@ -79,8 +79,11 @@ typedef enum : NSUInteger {
             return CGSizeMake(CGRectGetWidth(self.collectionView.frame) - 40, 50);
             
         case KAOWaterfallLayoutType:
-            return CGSizeMake(50, 50);
-            
+        {
+            NSUInteger width = 50 + arc4random() %(250+1-50);
+            NSUInteger height = 50 + arc4random() %(250+1-50);
+            return CGSizeMake(width, height);
+        }
         default:
             return CGSizeZero;
     }
