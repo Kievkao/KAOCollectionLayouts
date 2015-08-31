@@ -42,7 +42,7 @@ typedef enum : NSUInteger {
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 25;
+    return 15;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -51,7 +51,7 @@ typedef enum : NSUInteger {
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return [self itemSizeForLayoutType:self.currentLayoutType];
+    return [self itemSizeForLayoutType:self.currentLayoutType forIndexPath:indexPath];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -68,7 +68,7 @@ typedef enum : NSUInteger {
     [self.collectionView setContentOffset:self.contentOffset];
 }
 
-- (CGSize)itemSizeForLayoutType:(KAOLayoutType)layoutType {
+- (CGSize)itemSizeForLayoutType:(KAOLayoutType)layoutType forIndexPath:(NSIndexPath *)indexPath {
     
     switch (layoutType) {
         case KAOCardLayoutType:
@@ -83,6 +83,7 @@ typedef enum : NSUInteger {
             NSUInteger width = 50 + arc4random() %(250+1-50);
             NSUInteger height = 50 + arc4random() %(250+1-50);
             return CGSizeMake(width, height);
+//            return CGSizeMake((indexPath.row + 1)*40, (indexPath.row + 1)*50);
         }
         default:
             return CGSizeZero;

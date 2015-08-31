@@ -11,34 +11,74 @@
 
 @interface KAOWaterfallLayout()
 
-@property (nonatomic, strong) NSMutableArray *itemsSizes;
+@property (nonatomic, strong) NSArray *itemsSizes;
 @property (nonatomic, strong) NSArray *itemsPositions;
+@property (nonatomic, strong) NSArray *itemsAttributes;
 
 @end
 
 @implementation KAOWaterfallLayout
 
 - (void)prepareLayout {
-    
-    [self collectItemsSizes];
+    self.itemsSizes = [self collectItemsSizes];
     self.itemsPositions = [KAORectReplacementBridge positionsForRectangles:self.itemsSizes parentSize:self.collectionView.frame.size];
-    
-//    for (NSValue *posValue in positions) {
-//        KAORectPosition itemPos;
-//        [posValue getValue:&itemPos];
-//        NSLog(@"value");
-//    }
+    self.itemsAttributes = [self itemsAttributesFromSizes:self.itemsSizes positions:self.itemsPositions];
 }
 
-- (void)collectItemsSizes {
+- (NSArray *)itemsAttributesFromSizes:(NSArray *)sizes positions:(NSArray *)positions {
+    
+    NSMutableArray *attrArray = [NSMutableArray new];
+    
+    positions = [positions sortedArrayUsingComparator:^NSComparisonResult(NSValue *posValue1, NSValue *posValue2) {
+        
+        KAORectPosition itemPos1;
+        [posValue1 getValue:&itemPos1];
+        
+        KAORectPosition itemPos2;
+        [posValue2 getValue:&itemPos2];
+        
+        if ((itemPos1.y < itemPos2.y) || ((itemPos1.y == itemPos2.y) && (itemPos1.x < itemPos2.x))) {
+            return  NSOrderedAscending;
+        }
+        else if ((itemPos1.y > itemPos2.y) || ((itemPos1.y == itemPos2.y) && (itemPos1.x > itemPos2.x))) {
+            return NSOrderedDescending ;
+        }
+        else {
+            return NSOrderedSame;
+        }
+    }];
+    
+    [positions enumerateObjectsUsingBlock:^(NSValue *posValue, NSUInteger idx, BOOL *stop) {
+        
+        KAORectPosition itemPos;
+        [posValue getValue:&itemPos];
+        
+        UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForItem:idx inSection:0]];
+        CGRect attrFrame = attributes.frame;
+        attrFrame.origin.x = itemPos.x;
+        attrFrame.origin.y = itemPos.y;
+        attrFrame.size = [self.itemsSizes[itemPos.n] CGSizeValue];
+        attributes.frame = attrFrame;
+        
+        [attrArray addObject:attributes];
+    }];
+    
+    return attrArray;
+}
 
+- (NSArray *)collectItemsSizes {
+
+    NSMutableArray *sizes = [NSMutableArray new];
+    
     NSInteger itemsNum = [self.collectionView numberOfItemsInSection:0];
     self.itemsSizes = [NSMutableArray new];
     
     for (NSInteger i = 0; i < itemsNum; i++) {
         CGSize itemSize = [self sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
-        [self.itemsSizes addObject:[NSValue valueWithCGSize:itemSize]];
+        [sizes addObject:[NSValue valueWithCGSize:itemSize]];
     }
+    
+    return sizes;
 }
 
 - (CGSize)sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -55,51 +95,49 @@
 
 - (CGSize)collectionViewContentSize {
 #warning JUST FOR TEST
+    UICollectionViewLayoutAttributes *lastAttribute = [self.itemsAttributes firstObject];
     return CGSizeMake(self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UICollectionViewLayoutAttributes *attributes = [super layoutAttributesForItemAtIndexPath:indexPath];
-    
-    KAORectPosition itemPos;
-    NSValue *posValue = self.itemsPositions[indexPath.row];
-    [posValue getValue:&itemPos];
-    
-    CGRect attrFrame = attributes.frame;
-    attrFrame.origin.x = itemPos.x;
-    attrFrame.origin.y = itemPos.y;
-    attributes.frame = attrFrame;
-    
-    return attributes;
+    return self.itemsAttributes[indexPath.row];
 }
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
     
-    NSMutableArray *allAttributes = [NSMutableArray arrayWithCapacity:self.itemsPositions.count];
+    NSMutableArray *allAttributes = [NSMutableArray new];
     
-    for (NSValue *posValue in self.itemsPositions) {
-        KAORectPosition itemPos;
-        [posValue getValue:&itemPos];
+    for (UICollectionViewLayoutAttributes *attr in self.itemsAttributes) {
         
-        CGSize itemSize = [self sizeForItemAtIndex:itemPos.n];
-        if (CGRectIntersectsRect(rect, CGRectMake(itemPos.x, itemPos.y, itemSize.width, itemSize.height))) {
-            
-            UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForItem:itemPos.n inSection:0]];
-            CGRect attrFrame = attributes.frame;
-            attrFrame.origin.x = itemPos.x;
-            attrFrame.origin.y = itemPos.y;
-            attrFrame.size = [self sizeForItemAtIndex:itemPos.n];
-            attributes.frame = attrFrame;
-            [allAttributes addObject:attributes];
+        if (CGRectIntersectsRect(attr.frame, rect)) {
+            [allAttributes addObject:attr];
         }
     }
+    
     return allAttributes;
+    
+//    for (NSValue *posValue in self.itemsPositions) {
+//        KAORectPosition itemPos;
+//        [posValue getValue:&itemPos];
+//        
+//        CGSize itemSize = [self sizeForItemAtIndex:itemPos.n];
+//        if (CGRectIntersectsRect(rect, CGRectMake(itemPos.x, itemPos.y, itemSize.width, itemSize.height))) {
+//            
+//            UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForItem:[self.itemsPositions indexOfObject:posValue] inSection:0]];
+//            CGRect attrFrame = attributes.frame;
+//            attrFrame.origin.x = itemPos.x;
+//            attrFrame.origin.y = itemPos.y;
+//            attrFrame.size = [self sizeForItemAtIndex:itemPos.n];
+//            attributes.frame = attrFrame;
+//            [allAttributes addObject:attributes];
+//        }
+//    }
+//    return allAttributes;
 }
 
-- (CGSize)sizeForItemAtIndex:(NSUInteger)index {
-    NSValue *sizeValue = self.itemsSizes[index];
-    return [sizeValue CGSizeValue];
-}
+//- (CGSize)sizeForItemAtIndex:(NSUInteger)index {
+//    NSValue *sizeValue = self.itemsSizes[index];
+//    return [sizeValue CGSizeValue];
+//}
 
 @end
