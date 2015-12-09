@@ -35,7 +35,7 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.currentLayoutType = KAOWaterfallLayoutType;
+    self.currentLayoutType = KAOCardLayoutType;
     
     [self prepareCollectionView:self.collectionView forLayoutType:self.currentLayoutType];
 }

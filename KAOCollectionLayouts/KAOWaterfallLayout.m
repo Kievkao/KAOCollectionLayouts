@@ -115,29 +115,6 @@
     }
     
     return allAttributes;
-    
-//    for (NSValue *posValue in self.itemsPositions) {
-//        KAORectPosition itemPos;
-//        [posValue getValue:&itemPos];
-//        
-//        CGSize itemSize = [self sizeForItemAtIndex:itemPos.n];
-//        if (CGRectIntersectsRect(rect, CGRectMake(itemPos.x, itemPos.y, itemSize.width, itemSize.height))) {
-//            
-//            UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForItem:[self.itemsPositions indexOfObject:posValue] inSection:0]];
-//            CGRect attrFrame = attributes.frame;
-//            attrFrame.origin.x = itemPos.x;
-//            attrFrame.origin.y = itemPos.y;
-//            attrFrame.size = [self sizeForItemAtIndex:itemPos.n];
-//            attributes.frame = attrFrame;
-//            [allAttributes addObject:attributes];
-//        }
-//    }
-//    return allAttributes;
 }
-
-//- (CGSize)sizeForItemAtIndex:(NSUInteger)index {
-//    NSValue *sizeValue = self.itemsSizes[index];
-//    return [sizeValue CGSizeValue];
-//}
 
 @end
